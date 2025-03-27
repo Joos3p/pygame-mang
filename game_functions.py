@@ -1,13 +1,7 @@
 import sys
 import pygame
 
-
-#
-pygame.init()
-ADDBUBBLE = pygame.USEREVENT + 1
-pygame.time.set_timer(ADDBUBBLE, 250)
-
-def check_events(gm_set, screen, player, bubbles):
+def check_events(gm_settings, screen, player):
     """Kontrolli klaviatuuri sündmusi"""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -30,23 +24,12 @@ def check_events(gm_set, screen, player, bubbles):
                 player.moving_up = False
             if event.key == pygame.K_DOWN:
                 player.moving_down = False
-        elif event.type == ADDBUBBLE:
-            create_bubble(gm_set, screen, bubbles)
             
-def create_bubble(gm_set, screen, bubbles):
-    new_bubble = Bubble(screen, gm_set)
-    bubbles.add(new_bubble)
-            
-def update_screen(gm_set, screen, player, bubbles):
+def update_screen(gm_settings, screen, player):
     """Uuenda pilti ekraanil ja loo uus ekraan"""
     # lisa ekraani taust
-    screen.fill(gm_set.bg_color)
+    screen.fill(gm_settings.bg_color)
     # lisa mängija ekraanile
     player.blit_me()
-    # add bubbles to screen
-    for bubble in bubbles:
-        bubble.blit_me()
-    # lisa mull ekraanile
-    bubble.blit_me()
     # esinda viimast ekraani
     pygame.display.flip()
