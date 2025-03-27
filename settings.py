@@ -6,6 +6,4 @@ class Settings:
         self.bg_color = (255, 14, 216)
         self.caption = "Bubble Bluster"
         
-        self.bubble_min_r = 10
-        self.bubble_max_r = 50
         
